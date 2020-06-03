@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "/home/gmdev/.local/share/virtualenvs/intry4.0-opcua-server-rNEFdONp/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "black"
+}

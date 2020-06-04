@@ -1,3 +1,0 @@
-[console_scripts]
-intry-opcua = intry_opcua_server.__main__:main
-

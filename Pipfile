@@ -11,7 +11,6 @@ black = "*"
 opcua = "*"
 pandas = "*"
 click = "*"
-intry-opcua-server = {editable = true,path = "."}
 cryptography = "*"
 
 [requires]

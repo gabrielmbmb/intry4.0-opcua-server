@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6f09554ba00e4805fedeabef40072d53e4e09aae68a964359e121669e22df4c9"
+            "sha256": "c4663b95354337c939c88ce15a7ca9fe5e3b2634d1c0057edd10ee999ec144d2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -81,10 +81,6 @@
             ],
             "index": "pypi",
             "version": "==2.9.2"
-        },
-        "intry-opcua-server": {
-            "editable": true,
-            "path": "."
         },
         "lxml": {
             "hashes": [

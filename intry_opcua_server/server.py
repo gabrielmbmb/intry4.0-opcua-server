@@ -171,8 +171,21 @@ class OPCUAServer:
                             str_to_date(index) - str_to_date(last_index)
                         ).total_seconds()
 
+                        if time_between_update > 60:
+                            self._logger.info(
+                                "Time between update too high. Setting it to 60 secs..."
+                            )
+                            time_between_update = 60.0
+
+                        elif time_between_update < 0:
+                            self._logger.info(
+                                "Time between update was negative. Setting it to 5 secs..."
+                            )
+                            time_between_update = 5.0
+
+                    self._logger.info(f"Starting sleep of {time_between_update}...")
                     time.sleep(time_between_update)
-                    self._logger.debug(
+                    self._logger.info(
                         f"Time of {time_between_update} elapsed. Updating variable values..."
                     )
                     for (column, node) in variable_name_node.items():

@@ -177,7 +177,7 @@ class OPCUAServer:
                             )
                             time_between_update = 60.0
 
-                        elif time_between_update < 5:
+                        elif time_between_update < 6:
                             self._logger.info(
                                 "Time between update was negative or too low. Setting it to 10 secs..."
                             )

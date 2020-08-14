@@ -59,6 +59,9 @@ logger.addHandler(stream_handler)
     default="/var/intry-opcua-server/key.pem",
     help="Path of the private key file",
 )
+@click.option(
+    "-mt", "--min-time", default=30, help="Min time elapsed between variable updates"
+)
 def main(
     endpoint,
     server_name,
@@ -67,6 +70,7 @@ def main(
     last_row_file,
     certificate,
     private_key,
+    min_time,
 ):
     # Get config from environment variables. If not provided takes the default value.
     _endpoint = os.getenv("OPCUA_SERVER_ENDPOINT", endpoint)
@@ -76,6 +80,7 @@ def main(
     _last_row_file = os.getenv("OPCUA_LAST_ROW_FILE", last_row_file)
     _certificate = os.getenv("OPCUA_CERTIFICATE", certificate)
     _private_key = os.getenv("OPCUA_PRIVATE_KEY", private_key)
+    _min_time = os.getenv("OPCUA_MIN_TIME", min_time)
 
     # Set logger level
     logger.setLevel(_logging_level)
@@ -92,7 +97,8 @@ def main(
         last_row_file=_last_row_file,
         logger=logger,
         certificate=_certificate,
-        private_key=_private_key
+        private_key=_private_key,
+        min_time=_min_time,
     )
     server.start()
 

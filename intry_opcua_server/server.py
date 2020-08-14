@@ -37,6 +37,7 @@ class OPCUAServer:
             Defaults to '/var/intry-opcua-server/cert.der'.
         private_key (:obj:`str`): path of the certificate file used by the server.
             Defaults to '/var/intry-opcua-server/key.pem'.
+        min_time(:obj:`int`): min time elapsed between variable updates. Defaults to 30.
         logger(:obj:`logging.Logger`): logger to be used. Defaults to None.
 
     Attributes:
@@ -63,6 +64,7 @@ class OPCUAServer:
         last_row_file: str = "/var/intry-opcua-server/last_row.log",
         certificate: str = "/var/intry-opcua-server/cert.der",
         private_key: str = "/var/intry-opcua-server/key.pem",
+        min_time: int = 30,
         logger=None,
     ):
         if security_policy is None:
@@ -86,6 +88,7 @@ class OPCUAServer:
         self._logger = logger or logging.getLogger(__name__)
         self.last_row = {}
         self._stop = False
+        self.min_time = min_time
 
     def _add_variable(self, name, value):
         """Adds a variable to the OPC UA server.
@@ -177,11 +180,11 @@ class OPCUAServer:
                             )
                             time_between_update = 60.0
 
-                        elif time_between_update < 6:
+                        elif time_between_update < self.min_time:
                             self._logger.info(
-                                "Time between update was negative or too low. Setting it to 10 secs..."
+                                f"Time between update was negative or too low. Setting it to {self.min_time} secs..."
                             )
-                            time_between_update = 10.0
+                            time_between_update = self.min_time
 
                     self._logger.info(f"Starting sleep of {time_between_update}...")
                     time.sleep(time_between_update)

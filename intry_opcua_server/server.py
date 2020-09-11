@@ -149,14 +149,15 @@ class OPCUAServer:
 
                     for column in df.columns:
                         first_value = df[column].iloc[0]
-                        # remove the first row because its going used for initial value
-                        df = df.iloc[1:]
                         self._logger.debug(
                             f"Adding variable [{column}] with initial value <{first_value}>"
                         )
                         variable_name_node[column] = self._add_variable(
                             column, first_value
                         )
+
+                    # remove the first row because its going used for initial value
+                    df = df.iloc[1:]
 
                 # iterate over the rows in the dataframe for updating the value of each variable
                 time_between_update = 0

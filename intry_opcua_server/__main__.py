@@ -80,7 +80,7 @@ def main(
     _last_row_file = os.getenv("OPCUA_LAST_ROW_FILE", last_row_file)
     _certificate = os.getenv("OPCUA_CERTIFICATE", certificate)
     _private_key = os.getenv("OPCUA_PRIVATE_KEY", private_key)
-    _min_time = os.getenv("OPCUA_MIN_TIME", min_time)
+    _min_time = int(os.getenv("OPCUA_MIN_TIME", min_time))
 
     # Set logger level
     logger.setLevel(_logging_level)
